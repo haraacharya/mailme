@@ -1,0 +1,17 @@
+<div id="all-profiles">
+	
+	<% @users.each do |user| %>
+		<%= link_to user_path(user) do %>
+			<div class="profile-view">
+				<img src="<%= user.image %>"><br/><br/>
+				NAME: <%= user.name %><br/>
+				<% if user.location != nil %>
+					LOCATION: <%= user.location %><br/>
+				<% end %>
+				SEX: <%= user.gender %>
+			</div>	
+		<% end %>
+	
+	<% end %>	
+
+</div>

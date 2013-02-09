@@ -1,0 +1,13 @@
+<p>It's a mailme Bang!. The details of the user is revealed because you have sent a male before.
+<%= @user.name %> is also informed about this. </p>
+
+<img src="<%= @user.image %>"><br/>
+FROM: <%= @user.name %><br/>
+EMAIL: <%= @user.email %><br/>
+PROFILE:<%= @user.urls %><br/>
+<% if @user.location != nil %>
+LOCATION:<%= @user.location %><br/>
+<% end %>
+
+MAIL SUBJECT:<br/>
+<p><%= @mailmemail.content %></p>

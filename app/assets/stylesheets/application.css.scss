@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+html,body{
+	height: 100%
+}
+
+#main {
+	padding-top: 70px;
+}
+
+a:hover {
+	text-decoration: none;	
+}
+
+.profile-view:hover{
+	background-color: #F7F7F7;	
+}
+.profile-view{
+	width: 95%;
+	overflow: auto;
+	border-bottom: 1px solid $grayLighter;
+	padding: 8px 0;
+	float:left;
+}
+.inbox-style{
+	width: 95%;
+	overflow: auto;
+	border-bottom: 1px solid $grayLighter;
+	padding: 5px 0;
+	background-color: #F7F7F7;	
+}
+
+footer{
+	text-align: center;
+}

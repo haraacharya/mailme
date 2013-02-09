@@ -1,0 +1,76 @@
+<div id="single-profile">
+	<div class="well well-large">
+		Mail-me profile : <%= @user.name %><br/>
+
+		<img src="<%= @user.image %>"><br/>
+		<%= @user.first_name %> <%= @user.last_name %><br/>
+		<a href="<%= @user.urls %>">Facebook_profile</a> <br/>
+		<% if @user.location != nil %>
+			LOCATION: <%= @user.location %>
+		<% end %>	
+		GENDER: <%= @user.gender %><br/><br/>
+		<% if @user.verified == true %>
+			<div class="alert alert-success"><i class="icon-thumbs-up"></i> You are a FB verified user!</div>
+		<% else %>
+			<div class="alert alert-info"><i class="icon-thumbs-down"></i> You are not a FB verified user!!!</div>
+		<% end %>	
+	</div>	
+
+	<% if current_user == @user %>
+		<div class="accordion" id="accordion2">
+			<% i = 0 %>
+			<% @mailmemails.each do |mailmemail| %>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= i %>">
+							<% if mailmemail.bang == true %>
+								<span class="label label-success">From: <%= mailmemail.user.name %></span>
+							<% else %>
+							 	<span class="muted">From a Mail-me <%= mailmemail.user.gender %> user!</span><br/>
+							<% end %> 
+							Subject: <%=  mailmemail.subject %>
+						</a>
+					</div>
+					<div id="collapse<%= i %>" class="accordion-body collapse">
+						<div class="accordion-inner">	
+							<%= mailmemail.content %>
+							<% if mailmemail.bang == true %>
+								<br/><br/>
+								<div class="alert alert-block">
+									Sender detail:<br/>
+									<img src="<%= mailmemail.user.image %>"><br/>
+									FACEBOOK PROFILE: <%= link_to mailmemail.user.urls, mailmemail.user.urls %><br/>
+									EMAIL: <%= mailmemail.user.email %><br/>
+									<% if mailmemail.user.location != nil %>
+										LOCATION: <%= mailmemail.user.location %>
+									<% end %>	
+								</div>	
+								
+							<% end %>
+						</div><!--end accordian-inner-->
+					</div><!--end collapseOne-->		
+				</div><!--end accordion-group-->
+				<% i = i + 1 %>
+			<% end %>
+				
+		</div><!--end accordion-->
+	<% end %>
+
+	Wanna <i class="icon-envelope"></i> me:<br/>
+	<% if current_user %>	
+		<%= form_for [@user, @mailmemail] do |f| %>
+			<% if @mailmemail.errors.any? %>
+				<div class="alert alert-error">
+					<%= @mailmemail.errors.full_messages.join("<br/>").html_safe %>
+				</div>
+			<% end %>
+
+			<%= f.text_field :subject, class: "span4", placeholder: "What is it about..." %><br/>
+			<%= f.text_area :content, class: "span4", rows: 5, placeholder: "Pamper me and wait for the MAILME-BANG!" %><br/>
+			<%= f.submit "Send mail!" %>
+		<% end %>
+	<% else %>
+		<%= link_to "Sign in with Facebook to MaIlMe & get BaNgEd", "/auth/facebook" %>
+	<% end %>	
+
+</div>	

@@ -1,0 +1,66 @@
+<div id="single-profile">
+	<div class="well well-large">
+		Mail me profile of : <%= @user.name %><br/>
+
+		<img src="<%= @user.image %>"><br/>
+		<%= @user.name %><br/>
+		<%= @user.first_name %> <%= @user.last_name %><br/>
+		<a href="<%= @user.urls %>">Facebook_profile</a> <br/>
+		<%= @user.location %><br/>
+		<%= @user.verified %><br/>
+		<%= @user.gender %>
+	</div>	
+
+	<% if current_user == @user %>
+		<div class="accordion" id="accordion2">
+			<% @mailmemails.each do |mailmemail| %>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+							<% if mailmemail.bang == true %>
+								<span>From: <%= mailmemail.user.name %></span>
+							<% else %>
+							 	<span class="muted">From a Mail-me <%= mailmemail.user.gender %> user!</span><br/>
+							<% end %> 
+							Subject: <%=  mailmemail.subject %>
+						</a>
+					</div>
+					<div id="collapseOne" class="accordion-body collapse in">
+						<div class="accordion-inner">	
+							Content:<br/><%= mailmemail.content %>
+							<% if mailmemail.bang == true %>
+							
+								SENDER DETAILS:<br/>
+								<%= mailmemail.user.image %><br/>
+								FACEBOOK PROFILE: <%= link_to mailmemail.user.urls, mailmemail.user.urls %><br/>
+								EMAIL: <%= mailmemail.user.email %><br/>
+								<% if mailmemail.user.location != nil %>
+									LOCATION: <%= mailmemail.user.location %>
+								<% end %>	
+								
+							<% end %>
+						</div><!--end accordian-inner-->
+					</div><!--end collapseOne-->		
+				</div><!--end accordion-group-->
+			<% end %>	
+		</div><!--end accordion-->
+	<% end %>
+
+	Mail me:<br/>
+	<% if current_user %>	
+		<%= form_for [@user, @mailmemail] do |f| %>
+			<% if @mailmemail.errors.any? %>
+				<div class="alert alert-error">
+					<%= @mailmemail.errors.full_messages.join("<br/>").html_safe %>
+				</div>
+			<% end %>
+
+			<%= f.text_field :subject, class: "span4", placeholder: "What is it about..." %><br/>
+			<%= f.text_area :content, class: "span4", rows: 5, placeholder: "Pamper me and wait for the MAILME-BANG!" %><br/>
+			<%= f.submit "Send mail!" %>
+		<% end %>
+	<% else %>
+		<%= link_to "Sign in with Facebook to MaIlMe & get BaNgEd", "/auth/facebook" %>
+	<% end %>	
+
+</div>	
