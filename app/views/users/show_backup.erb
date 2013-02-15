@@ -12,37 +12,42 @@
 	</div>	
 
 	<% if current_user == @user %>
+		<span class="label">MAIL-BOX: (<%= no_of_mails(current_user) %>)</span><br/><br/>
 		<div class="accordion" id="accordion2">
+			<% i = 0 %>
 			<% @mailmemails.each do |mailmemail| %>
 				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+					<div class="accordion-heading row-fluid"><div class="span12">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= i %>">
 							<% if mailmemail.bang == true %>
-								<span>From: <%= mailmemail.user.name %></span>
+								<span class="label label-success">From: <%= mailmemail.user.name %></span><span class="icon-chevron-down pull-right"></span>
 							<% else %>
-							 	<span class="muted">From a Mail-me <%= mailmemail.user.gender %> user!</span><br/>
+							 	<span class="muted">From a Mail-me <%= mailmemail.user.gender %> user!</span><span class="icon-chevron-down pull-right"></span><br/>
 							<% end %> 
-							Subject: <%=  mailmemail.subject %>
-						</a>
+							Subject: <%=  mailmemail.subject %> <span class="pull-right"><%= mailmemail.created_at%> (<%= time_ago_in_words(mailmemail.created_at) %> ago)</span>
+						</a></div>
 					</div>
-					<div id="collapseOne" class="accordion-body collapse in">
-						<div class="accordion-inner">	
-							Content:<br/><%= mailmemail.content %>
+					<div id="collapse<%= i %>" class="accordion-body collapse row-fluid">
+						<div class="accordion-inner span12">	
+							<%= mailmemail.content %>
 							<% if mailmemail.bang == true %>
-							
-								SENDER DETAILS:<br/>
-								<%= mailmemail.user.image %><br/>
-								FACEBOOK PROFILE: <%= link_to mailmemail.user.urls, mailmemail.user.urls %><br/>
-								EMAIL: <%= mailmemail.user.email %><br/>
-								<% if mailmemail.user.location != nil %>
-									LOCATION: <%= mailmemail.user.location %>
-								<% end %>	
+								<br/><br/>
+								<div class="alert alert-block">
+									Sender detail:<br/>
+									<img src="<%= mailmemail.user.image %>"><br/>
+									FACEBOOK PROFILE: <%= link_to mailmemail.user.urls, mailmemail.user.urls %><br/>
+									EMAIL: <%= mailmemail.user.email %><br/>
+									<% if mailmemail.user.location != nil %>
+										LOCATION: <%= mailmemail.user.location %>
+									<% end %>	
+								</div>	
 								
 							<% end %>
 						</div><!--end accordian-inner-->
 					</div><!--end collapseOne-->		
 				</div><!--end accordion-group-->
-			<% end %>	
+				<% i = i + 1 %>
+			<% end %>
 		</div><!--end accordion-->
 	<% end %>
 

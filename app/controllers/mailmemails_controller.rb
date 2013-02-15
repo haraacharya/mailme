@@ -19,6 +19,12 @@ class MailmemailsController < ApplicationController
 					oldmailmemail.bang = true
 					oldmailmemail.save
 				end
+
+				@oldmailmemailsr = Mailmemail.where(:user_id => @user.id, :sendto => current_user.id)
+				@oldmailmemailsr.each do |oldmailmemailr|
+					oldmailmemailr.bang = true
+					oldmailmemailr.save
+				end
 				
 				@bangfromuser = current_user		
 				UserMailer.bang_confirmation(@mailmemail, @bangfromuser).deliver

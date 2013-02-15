@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
-  :domain               => "http://sleepy-lowlands-4295.herokuapp.com",
-  :user_name            => "hara.acharya@gmail.com",
-  :password             => "Agrima2012@",
+  :domain               => "http://localhost:3000",
+  :user_name            => "donotrespond.mailme@gmail.com",
+  :password             => "Bekham@2",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }

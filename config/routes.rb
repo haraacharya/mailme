@@ -1,8 +1,9 @@
 Mailme::Application.routes.draw do
   
-  root to: "users#index"
+  #root to: "users#index"
+  root to: "static_pages#home"
 
-  resources :users, only: [:create, :show] do
+  resources :users, only: [:create, :show, :index] do
     resources :mailmemails, only: [:new, :create]
   end
 

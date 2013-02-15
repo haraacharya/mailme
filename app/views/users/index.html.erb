@@ -1,17 +1,23 @@
-<div id="all-profiles">
+<ul id="all-profiles">
 	
 	<% @users.each do |user| %>
-		<%= link_to user_path(user) do %>
-			<div class="profile-view">
-				<img src="<%= user.image %>"><br/><br/>
-				NAME: <%= user.name %><br/>
-				<% if user.location != nil %>
-					LOCATION: <%= user.location %><br/>
-				<% end %>
-				SEX: <%= user.gender %>
-			</div>	
-		<% end %>
-	
+		<li>
+			<%= link_to user_path(user) do %>
+				<div class="profile-view">
+					<img src="<%= user.image %>"><br/><br/>
+					NAME: <%= user.name %> <span class="label label-info"><%= pluralize(no_of_mails(user), "mail") %></span><br/>
+					<% if user.location != nil %>
+						(From: <%= user.location %>)<br/>
+					<% end %>
+					SEX: <%= user.gender %><br/>
+					<% if current_user %>	
+						<div class="mailme-highlite"><strong>
+							SEND ME A MAIL!
+						</strong></div><br/>
+					<% end %>	
+				</div>	
+			<% end %>	
+		</li>	
 	<% end %>	
 
-</div>
+</ul>

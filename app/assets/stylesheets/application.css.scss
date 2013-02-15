@@ -18,24 +18,33 @@ html,body{
 	height: 100%
 }
 
-#main {
-	padding-top: 70px;
-}
-
 a:hover {
 	text-decoration: none;	
 }
 
-.profile-view:hover{
-	background-color: #F7F7F7;	
+
+
+ul#all-profiles > li:nth-child(odd){background-color: #FFFFFF;}
+ul#all-profiles > li:nth-child(even){background-color: #F7F7F7;}
+
+.accordion-toggle:nth-child(odd){background-color: #F7F7F7;}
+.accordion-toggle:nth-child(even){background-color: #FFFFFF;}
+
+ul#all-profiles{
+	list-style: none;
 }
-.profile-view{
-	width: 95%;
-	overflow: auto;
-	border-bottom: 1px solid $grayLighter;
-	padding: 8px 0;
-	float:left;
+
+ol{
+	list-style: none;
 }
+
+.mailme-highlite{
+	font-family: Anton,Impact, Arial, sans-serif;
+	font-size: 100%;
+	font-weight: 200;
+	color:#959697;
+}
+
 .inbox-style{
 	width: 95%;
 	overflow: auto;
@@ -45,5 +54,5 @@ a:hover {
 }
 
 footer{
-	text-align: center;
+	text-align: right;
 }

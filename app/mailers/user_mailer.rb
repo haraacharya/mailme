@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "mailme@nosreves.in"
+  default from: "donotrespond.mailme@gmail.com"
   
   def mail_confirmation(mailmemail)
   	@mailmemail = mailmemail

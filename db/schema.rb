@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208211548) do
+ActiveRecord::Schema.define(:version => 20130211093922) do
 
   create_table "mailmemails", :force => true do |t|
     t.integer  "user_id"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20130208211548) do
     t.string   "provider"
     t.integer  "uid"
     t.string   "gender"
-    t.string   "status"
   end
 
 end

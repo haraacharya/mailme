@@ -14,7 +14,7 @@
 
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar">
       <nav class="navbar-inner">
         <div class="container">
           <%= render 'layouts/navigation' %>
@@ -25,14 +25,12 @@
       <div class="container">
         <div class="content">
           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
+            <%= render 'layouts/messages' %>
+            <%= yield %>
           </div>
           <footer>
             <br/>
-            &copy;<a href='http://nosreves.in'>mail-me</a> <%= Time.now.year %>
+            &copy; <a href='http://nosreves.in'>mail-me</a> <%= Time.now.year %>
           </footer>
         </div>
       </div> <!--! end of .container -->

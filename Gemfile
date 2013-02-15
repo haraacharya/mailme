@@ -5,6 +5,10 @@ gem 'bootstrap-sass'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'sunspot_solr'
+gem 'sunspot_rails'
+
+
 group :development do
 	gem 'sqlite3'
 end
