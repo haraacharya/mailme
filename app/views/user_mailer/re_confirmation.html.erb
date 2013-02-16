@@ -1,10 +1,10 @@
+<p><%= @mailmemail.content %></p>
+
 <p>It's a mailme Bang!. You got this email from the below user. Now that you sent a mail to that user, BANG!!!</p>
 <p><%= @user.name %> is also informed about this. </p>
-
+<span class="label label-info">Sender details:</span>
 <img src="<%= @user.image %>"><br/>
 FROM: <%= @user.name %><br/>
 EMAIL: <%= @user.email %><br/>
 PROFILE:<%= @user.urls %><br/>
 LOCATION:<%= @user.location %><br/>
-
-<p><%= @mailmemail.content %></p>

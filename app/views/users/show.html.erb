@@ -16,6 +16,7 @@
 		<% end %>	
 	</div>	
 	
+	<% if current_user == @user %>
 		<span class="label">MAIL-BOX: (<%= no_of_mails(current_user) %>)</span><br/><br/>
 		<div class="accordion" id="accordion2">
 			<% i = 0 %>
@@ -25,9 +26,9 @@
 						<div class="span12">
 							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= i %>">
 								<% if mailmemail.bang == true %>
-									<span class="label label-success">From: <%= mailmemail.user.name %></span><span class="icon-chevron-down pull-right"></span>
+									<span class="label label-warning">Bang!</span> <span class="label label-success">From: <%= mailmemail.user.name %></span><span class="icon-chevron-down pull-right"></span><br/>
 								<% else %>
-								 	<span class="muted">From a Mail-me <%= mailmemail.user.gender %> user!</span><span class="icon-chevron-down pull-right"></span><br/>
+								 	<span class="muted">From a <%= mailmemail.user.gender %> Mail-me user!</span><span class="icon-chevron-down pull-right"></span><br/>
 								<% end %> 
 								Subject: <%=  mailmemail.subject %> <span class="pull-right"><%= mailmemail.created_at%> (<%= time_ago_in_words(mailmemail.created_at) %> ago)</span>
 							</a>
@@ -57,53 +58,31 @@
 				<% i = i + 1 %>
 			<% end %>
 		</div><!--end accordion-->	
-	
+	<% end %>
 	<br/>
 
-	Wanna <i class="icon-envelope"></i> me:<br/>
-	<% if current_user %>	
-		<%= form_for [@user, @mailmemail] do |f| %>
-			<% if @mailmemail.errors.any? %>
-				<div class="alert alert-error">
-					<%= @mailmemail.errors.full_messages.join("<br/>").html_safe %>
-				</div>
-			<% end %>
+	<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mail-compose">
+		Wanna mail me <span class="icon-chevron-down icon-white"></span>
+	</button><br/><br/>	
+	<div id="mail-compose" class="collapse">
+		<% if current_user %>	
+			<%= form_for [@user, @mailmemail] do |f| %>
+				<% if @mailmemail.errors.any? %>
+					<div class="alert alert-error">
+						<%= @mailmemail.errors.full_messages.join("<br/>").html_safe %>
+					</div>
+				<% end %>
 
-			<%= f.text_field :subject, class: "span4", placeholder: "What is it about..." %><br/>
-			<%= f.text_area :content, class: "span4", rows: 5, placeholder: "Pamper me and wait for the MAILME-BANG!" %><br/>
-			<%= f.submit "Send mail!", class: "btn btn-primary" %>
-		<% end %>
-	<% else %>
-		<%= link_to "Sign in with Facebook to MaIlMe & get BaNgEd", "/auth/facebook" %>
-	<% end %>	
+				<%= f.text_field :subject, class: "span4", placeholder: "What is it about..." %><br/>
+				<%= f.text_area :content, class: "span4", rows: 5, placeholder: "Pamper me and wait for the MAILME-BANG!" %><br/>
+				<%= f.submit "Send mail!", class: "btn btn-primary" %>
+			<% end %>
+		<% else %>
+			<%= link_to "Sign in with Facebook to MaIlMe & get BaNgEd", "/auth/facebook" %>
+		<% end %>	
+	</div>	
 
 </div>	
 
 
-    <div data-toggle="collapse" data-target="#demo">
-    <a href="#demo">simple collapsible</a>
-    </div>
-     
-    <div id="demo" class="collapse in"> fldanfaklf
-    	fafa
-    	fa
-    	fa
-
-    	f
-    	af
-    	ga
-    </div>
-
-    <div data-toggle="collapse" data-target="#demo1">
-    	<a href="#demo1">simple collapsible</a>
-    </div>
-     
-    <div id="demo1" class="collapse"> fldanfaklf
-    	fafa
-    	fa
-    	fa
-
-    	f
-    	af
-    	ga
-    </div>
+   
