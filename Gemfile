@@ -7,7 +7,8 @@ gem 'bootstrap-sass'
 
 gem 'sunspot_solr'
 gem 'sunspot_rails'
-
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development do
 	gem 'sqlite3'

@@ -24,11 +24,18 @@ a:hover {
 
 
 
-ul#all-profiles > li:nth-child(odd){background-color: #FFFFFF;}
-ul#all-profiles > li:nth-child(even){background-color: #F7F7F7;}
+/*ul#all-profiles > li:nth-child(odd){background-color: #F7F7F7;}
+ul#all-profiles > li:nth-child(even){background-color: #FFFFFF;}*/
 
 .accordion-toggle:nth-child(odd){background-color: #F7F7F7;}
 .accordion-toggle:nth-child(even){background-color: #FFFFFF;}
+
+.profile-view{
+	border-bottom: 1px solid $grayLighter;
+}
+.profile-view:hover{
+	background-color: #F7F7F7;
+}	
 
 ul#all-profiles{
 	list-style: none;
@@ -40,8 +47,8 @@ ol{
 
 .mailme-highlite{
 	font-family: Anton,Impact, Arial, sans-serif;
-	font-size: 100%;
-	font-weight: 200;
+	font-size: 1.5em;
+	font-weight: 400;
 	color:#959697;
 }
 

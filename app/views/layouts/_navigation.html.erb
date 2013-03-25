@@ -17,9 +17,15 @@
             	<% end %>
             </li>
             <li><%= link_to "Not you? Sign out", signout_path, id: "sign_out" %></li>
+
         <% else %>
             <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
         <% end %>
+        <li>
+            <%= form_tag users_path, :class => "navbar-search pull-left", :method => 'get' do %>
+                <%= text_field_tag :search, params[:search], :class => "search-query", :placeholder => "Search users..." %>
+            <% end %>
+        </li>
     </ul>    
 </div>
 
